@@ -9,14 +9,14 @@ class SensorList extends Component {
     {
         jsonResult.sort((a, b) =>
         {
-            return a.name[0] >= b.name[0];
+            return b.id - a.id;
         });
 
         return jsonResult.map((channelData) => {
 
             let lastLevel = (channelData.lastLevel === null) ? 0 : channelData.lastLevel;
 
-            return (<tr key={channelData.name}><td>{channelData.name}</td><td>{channelData.name}</td><td>{lastLevel}</td></tr>)
+            return (<tr key={channelData.id}><td>{channelData.id}</td><td>{channelData.name}</td><td>{lastLevel}</td></tr>)
         });
     }
 

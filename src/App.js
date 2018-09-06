@@ -30,26 +30,27 @@ class App extends Component {
         channels.map((channel) => {
             axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=1&key=${channel.token}`)
                 .then(res => {
-                    const { name, latitude, longitude } = res.data.channel;
+                    const { name, latitude, longitude, id } = res.data.channel;
                     const feeds = res.data.feeds;
 
                     const { channelData } = this.state;
                     const lastLevel = feeds && feeds[0] ? feeds[0].field1 : null;
 
-                    const id = channelData.findIndex((element) =>
+                    const resId = channelData.findIndex((element) =>
                     {
-                        return element.name === name;
+                        return element.id === id;
                     });
 
-                    if (id >= 0 && id != undefined)
+                    if (resId >= 0 && resId != undefined)
                     {
-                        channelData.splice(id, 1)
+                        channelData.splice(resId, 1)
                     }
 
                     const fetchedData = channelData.concat([{
                         name,
                         latitude,
                         longitude,
+                        id,
                         lastLevel: lastLevel
                     }]);
 
