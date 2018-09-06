@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import SensorList from "./SensorList";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import MapContainer from './Components/MapContainer';
+import MapContainer from './components/MapContainer';
 
 const channels = [
   {
