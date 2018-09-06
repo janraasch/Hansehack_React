@@ -19,19 +19,12 @@ class App extends Component {
     data: []
   }
 
-  // componentDidMount() {
-  //   axios.get(`${serverURI}/channels/76/feed.json?key=${token}`)
-  //   .then(res => {
-  //     const posts = res.data.data.children.map(obj => obj.data);
-  //     this.setState({ posts });
-  //   });
-  // }
-
-
   render() {
     return (
       <Router>
         <div>
+            <Route path="/map" component={MapContainer} />
+            <Route path="/SensorList" component={SensorList} />
           <ul>
             <li>
               <Link to="/SensorList">SensorList</Link>
@@ -41,8 +34,7 @@ class App extends Component {
             </li>
           </ul>
           <hr />
-          <Route path="/map" component={MapContainer} />
-          <Route path="/SensorList" component={SensorList} />
+
         </div>
       </Router>
     );

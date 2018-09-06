@@ -1,0 +1,25 @@
+
+table
+{
+    width: 100%;
+    table-layout: fixed;
+}
+
+thead th
+{
+    background: black;
+    color: #CCCCCC;
+}
+
+
+
+tr:nth-child(even)
+{
+    background: #CCC
+}
+
+tr:nth-child(odd)
+{
+    background: #FFF
+}
+
