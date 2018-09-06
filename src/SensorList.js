@@ -7,6 +7,11 @@ class SensorList extends Component {
 
     fetchAllTableRows(jsonResult)
     {
+        jsonResult.sort((a, b) =>
+        {
+            return a.name[0] >= b.name[0];
+        });
+
         return jsonResult.map((channelData) => {
 
             let lastLevel = (channelData.lastLevel === null) ? 0 : channelData.lastLevel;
@@ -16,16 +21,6 @@ class SensorList extends Component {
     }
 
     render() {
-
-        const jsonData = {data: [
-                {id: 1, location: "geninerstrasse 80", noise: 5},
-                {id: 2, location: "strasse 32", noise: 13},
-                {id: 3, location: "test 80", noise: 5},
-                {id: 4, location: "strasse 3", noise: 15},
-                {id: 5, location: "qwe 80", noise: 12},
-                {id: 6, location: "abc 32", noise: 55},
-                {id: 7, location: "geninerstrasse 80", noise: 34},
-                {id: 8, location: "hallo 32", noise: 2}]};
 
         const channels = this.props.channelData;
 

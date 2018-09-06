@@ -24,25 +24,40 @@ class App extends Component {
   }
 
   componentDidMount() {
-    channels.map((channel) => {
-      axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=1&key=${channel.token}`)
-      .then(res => {
-        const { name, latitude, longitude } = res.data.channel
-        const feeds = res.data.feeds
-        
-        const { channelData } = this.state;
-        const lastLevel = feeds && feeds[0] ? feeds[0].field1 : null
 
-        const fetchedData = channelData.concat([{
-          name,
-          latitude,
-          longitude,
-          lastLevel: lastLevel
-        }]);
-        this.setState({ channelData: fetchedData });
-      });
-      return null;
-    })
+    setInterval(() =>
+    {
+        channels.map((channel) => {
+            axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=1&key=${channel.token}`)
+                .then(res => {
+                    const { name, latitude, longitude } = res.data.channel;
+                    const feeds = res.data.feeds;
+
+                    const { channelData } = this.state;
+                    const lastLevel = feeds && feeds[0] ? feeds[0].field1 : null;
+
+                    const id = channelData.findIndex((element) =>
+                    {
+                        return element.name === name;
+                    });
+
+                    if (id >= 0 && id != undefined)
+                    {
+                        channelData.splice(id, 1)
+                    }
+
+                    const fetchedData = channelData.concat([{
+                        name,
+                        latitude,
+                        longitude,
+                        lastLevel: lastLevel
+                    }]);
+
+                    this.setState({ channelData: fetchedData });
+                });
+            return null;
+        })
+    }, 2000);
   }
 
 
