@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import SensorList from "./SensorList";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import MapContainer from './MapContainer';
 
 const channels = [
@@ -41,7 +41,7 @@ class App extends Component {
                         return element.id === id;
                     });
 
-                    if (resId >= 0 && resId != undefined)
+                    if (resId >= 0 && resId !== undefined)
                     {
                         channelData.splice(resId, 1)
                     }
@@ -65,7 +65,7 @@ class App extends Component {
   render() {
     const { channelData } = this.state;
 
-    const feeds = channelData.map((channel) => {
+    channelData.map((channel) => {
       return (<li key={channel.name}>{channel.name}:{channel.lastLevel}</li>);
     });
 
@@ -74,15 +74,15 @@ class App extends Component {
         <div>
           <ul>
             <li>
-              <Link to="/SensorList">SensorList</Link>
+              <NavLink activeClassName="hide" to="/SensorList">SensorList</NavLink>
             </li>
             <li>
-              <Link to="/map">Map</Link>
+              <NavLink to="/map">Map</NavLink>
             </li>
           </ul>
           <hr />
-          <Route path="/map" component={() => <MapContainer channelData={channelData}/>} />
 
+          <Route path="/map" component={() => <MapContainer channelData={channelData}/>} />
           <Route path="/SensorList" component={() => <SensorList channelData={channelData}/>} />
 
         </div>

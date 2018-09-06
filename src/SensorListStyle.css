@@ -7,19 +7,24 @@ table
 
 thead th
 {
-    background: black;
-    color: #CCCCCC;
+    background: #222;
+    color: white;
+    height: 40px;
+    font-size: 1.1em;
 }
-
-
 
 tr:nth-child(even)
 {
-    background: #CCC
+    background: #BBB;
 }
 
 tr:nth-child(odd)
 {
-    background: #FFF
+    background: #EEE;
 }
 
+.disableLi
+{
+    visibility: hidden;
+    dislpay: none;
+}
