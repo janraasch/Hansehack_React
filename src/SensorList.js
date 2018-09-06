@@ -7,9 +7,12 @@ class SensorList extends Component {
 
     fetchAllTableRows(jsonResult)
     {
-        return jsonResult.data.map((channel) => (
-            (<tr key={channel.id}><td>{channel.id}</td><td>{channel.location}</td><td>{channel.noise}</td></tr>)
-        ));
+        return jsonResult.map((channelData) => {
+
+            let lastLevel = (channelData.lastLevel === null) ? 0 : channelData.lastLevel;
+
+            return (<tr key={channelData.name}><td>{channelData.name}</td><td>{channelData.name}</td><td>{lastLevel}</td></tr>)
+        });
     }
 
     render() {
@@ -23,6 +26,8 @@ class SensorList extends Component {
                 {id: 6, location: "abc 32", noise: 55},
                 {id: 7, location: "geninerstrasse 80", noise: 34},
                 {id: 8, location: "hallo 32", noise: 2}]};
+
+        const channels = this.props.channelData;
 
         return (
             <div className="App">
@@ -38,7 +43,7 @@ class SensorList extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                      {this.fetchAllTableRows(jsonData)}
+                      {this.fetchAllTableRows(channels)}
                     </tbody>
                 </table>
             </div>

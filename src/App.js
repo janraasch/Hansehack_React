@@ -48,9 +48,11 @@ class App extends Component {
 
   render() {
     const { channelData } = this.state;
+
     const feeds = channelData.map((channel) => {
-      return (<li>{channel.name}:{channel.lastLevel}</li>);
-    })
+      return (<li key={channel.name}>{channel.name}:{channel.lastLevel}</li>);
+    });
+
     return (
       <Router>
         <div>
@@ -64,8 +66,9 @@ class App extends Component {
           </ul>
           <hr />
           <Route path="/map" component={() => <MapContainer channelData={channelData}/>} />
+
           <Route path="/SensorList" component={() => <SensorList channelData={channelData}/>} />
-          {channelData.length > 0 ? (<ul>{feeds}</ul>) : '... loading server data'}
+
         </div>
       </Router>
     );
