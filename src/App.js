@@ -1,10 +1,9 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import SensorList from "./SensorList";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import MapContainer from './components/MapContainer';
 
-const channels = [
+export const channels = [
   {
     id: 121,
     token: 'UXPMPOC1TQQXBSAP'
@@ -19,59 +18,10 @@ const channels = [
     token: '6VF6QMZQSSERJXCG'
   }
 ]
-const serverURI = 'http://hansehack.fh-luebeck.de'
+export const serverURI = 'http://hansehack.fh-luebeck.de'
 
 class App extends Component {
-  state = {
-    channelData: []
-  }
-
-  componentDidMount() {
-
-    setInterval(() =>
-    {
-        channels.map((channel) => {
-            axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=1&key=${channel.token}`)
-                .then(res => {
-                    const { name, latitude, longitude, id } = res.data.channel;
-                    const feeds = res.data.feeds;
-
-                    const { channelData } = this.state;
-                    const lastLevel = feeds && feeds[0] ? feeds[0].field1 : null;
-
-                    const resId = channelData.findIndex((element) =>
-                    {
-                        return element.id === id;
-                    });
-
-                    if (resId >= 0 && resId !== undefined)
-                    {
-                        channelData.splice(resId, 1)
-                    }
-
-                    const fetchedData = channelData.concat([{
-                        name,
-                        latitude: latitude || '53.86893',
-                        longitude: longitude || '10.68729',
-                        id,
-                        lastLevel: lastLevel
-                    }]);
-
-                    this.setState({ channelData: fetchedData });
-                });
-            return null;
-        })
-    }, 2000);
-  }
-
-
   render() {
-    const { channelData } = this.state;
-
-    channelData.map((channel) => {
-      return (<li key={channel.name}>{channel.name}:{channel.lastLevel}</li>);
-    });
-
     return (
       <Router>
         <div>
@@ -85,8 +35,8 @@ class App extends Component {
           </ul>
           <hr />
 
-          <Route path="/map" component={() => <MapContainer channelData={channelData}/>} />
-          <Route path="/SensorList" component={() => <SensorList channelData={channelData}/>} />
+          <Route path="/map" component={() => <MapContainer/>} />
+          <Route path="/SensorList" component={() => <SensorList/>} />
 
         </div>
       </Router>

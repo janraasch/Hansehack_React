@@ -1,8 +1,50 @@
+import axios from 'axios';
 import React, { Component } from 'react';
+
+import {serverURI, channels} from './App';
+
 import './App.css';
 import './SensorListStyle.css';
 
 class SensorList extends Component {
+    state = {
+        channelData: []
+    }
+
+    componentDidMount() {
+        setInterval(() =>
+        {
+          channels.map((channel) => {
+            axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=1&key=${channel.token}`)
+              .then(res => {
+                const { name, latitude, longitude, id } = res.data.channel;
+                const feeds = res.data.feeds;
+    
+                const { channelData } = this.state;
+                const lastLevel = feeds && feeds[0] ? feeds[0].field1 : null;
+    
+                const resId = channelData.findIndex((element) => {
+                  return element.id === id;
+                });
+    
+                if (resId >= 0 && resId !== undefined) {
+                  channelData.splice(resId, 1)
+                }
+    
+                const fetchedData = channelData.concat([{
+                    name,
+                    latitude: latitude || '53.86893',
+                    longitude: longitude || '10.68729',
+                    id,
+                    lastLevel: lastLevel
+                }]);
+    
+                this.setState({ channelData: fetchedData });
+              });
+            return null;
+          })
+        }, 2000);
+    }
 
     fetchAllTableRows(jsonResult)
     {
@@ -21,7 +63,7 @@ class SensorList extends Component {
 
     render() {
 
-        const channels = this.props.channelData;
+        const channels = this.state.channelData;
 
         return (
             <div className="App">
