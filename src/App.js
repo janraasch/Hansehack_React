@@ -8,17 +8,17 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 export const channels = [
   {
+    id: 70,
+    token: '0W80BK3TWTEFH2OK'
+  }, {
+    id: 76,
+    token: 'AXOSSY1ZGI34E1KN'
+  }, {
     id: 121,
     token: 'UXPMPOC1TQQXBSAP'
   }, {
     id: 122,
     token: 'KPW4D81CMQ9YZX1G'
-  }, {
-    id: 123,
-    token: '4RIMYW1C4I56I5FR'
-  }, {
-    id: 70,
-    token: '0W80BK3TWTEFH2OK'
   }
 ]
 export const serverURI = 'http://hansehack.fh-luebeck.de'
