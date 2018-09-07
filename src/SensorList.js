@@ -62,7 +62,7 @@ class SensorList extends Component {
             return (
                 <div>
                 <h2 className="text-center">{channelData.name}</h2>
-                    <Table striped bordered condensed hover>
+                    <Table striped bordered hover>
                         <thead><tr><th>Timestamp</th> <th>Noise</th></tr></thead>
                         <tbody>{channelData.levels.map((el) => {
                             return (<tr key={el.timestamp}><td>{el.timestamp}</td><td>{el.noise}</td></tr>)})}
