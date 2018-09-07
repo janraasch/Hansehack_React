@@ -5,7 +5,7 @@ import { Col, Panel, Row } from 'react-bootstrap'
 import Slider from 'rc-slider'
 import Moment from 'react-moment'
 import MomentJS from 'moment'
-import ReactChartkick, { BarChart } from 'react-chartkick'
+import { BarChart } from 'react-chartkick'
 
 import 'rc-slider/assets/index.css'
 import './MapContainer.css'
