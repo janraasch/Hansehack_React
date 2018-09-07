@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SensorList from "./SensorList";
+import Home from './Home';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import MapContainer from './Components/MapContainer';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
@@ -52,6 +53,7 @@ class App extends Component {
 
           <Route path="/map" component={() => <MapContainer/>} />
           <Route path="/SensorList" component={() => <SensorList/>} />
+          <Route exact path="/" component={() => <Home/>} />
         </div>
       </Router>
     );

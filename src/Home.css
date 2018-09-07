@@ -1,0 +1,5 @@
+.hero {
+  color: white;
+  background-image: url('./bg-masthead.jpg');
+  background-size: cover;
+}
