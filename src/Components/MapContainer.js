@@ -90,16 +90,16 @@ class MapContainer extends Component {
     
     const channels = this.state.channelData
     const markerList = channels.map((channel) => {
-      let color = 'gray'
+      let color = 'white'
       let radius = 20
       
-      if (channel.lastLevel >= 0 && channel.lastLevel < 50) {
+      if (channel.lastLevel >= 20 && channel.lastLevel < 40) {
         color = 'green'
         radius = 50
-      } else if (channel.lastLevel >= 50 && channel.lastLevel < 100) {
+      } else if (channel.lastLevel >= 40 && channel.lastLevel < 65) {
         color = 'yellow'
         radius = 100
-      } else if(channel.lastLevel >= 100) {
+      } else if(channel.lastLevel >= 65) {
         color = 'red'
         radius = 150
       }
