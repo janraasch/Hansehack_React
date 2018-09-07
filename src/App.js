@@ -39,12 +39,12 @@ class App extends Component {
               <Nav>
                 <LinkContainer to="/SensorList">
                   <NavItem>    
-                    SensorList
+                    Daten
                   </NavItem>
                 </LinkContainer>
                 <LinkContainer to="/map">
                   <NavItem>    
-                    Map
+                    Stadtplan
                   </NavItem>
                 </LinkContainer>
               </Nav>

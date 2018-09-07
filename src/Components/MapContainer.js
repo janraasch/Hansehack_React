@@ -94,13 +94,13 @@ class MapContainer extends Component {
       let color = 'white'
       let radius = 20
       
-      if (channel.lastLevel >= 20 && channel.lastLevel < 40) {
+      if (channel.lastLevel >= 20 && channel.lastLevel < 50) {
         color = 'green'
         radius = 50
-      } else if (channel.lastLevel >= 40 && channel.lastLevel < 65) {
+      } else if (channel.lastLevel >= 50 && channel.lastLevel < 80) {
         color = 'yellow'
         radius = 100
-      } else if(channel.lastLevel >= 65) {
+      } else if (channel.lastLevel >= 80) {
         color = 'red'
         radius = 150
       }
@@ -118,49 +118,57 @@ class MapContainer extends Component {
 
     return (
       <div>
-        <Map
-          animate={true}
-          center={initialCoordinates}
-          length={4}
-          zoom={13}>
-          <TileLayer
-            attribution="&ampcopy <a href=&quothttp://osm.org/copyright&quot>OpenStreetMap</a> contributors"
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {markerList}
-        </Map>
-        <hr/>
-        <BarChart data={chartData}  xtitle="in Bel" />
-        <Panel>
-          <Panel.Heading>
-            Timeshifter:
-            <label>
-              <Moment 
-                subtract={{ minutes: timeshift }}
-                format="HH:mm"
+        <Row>
+          <Col md={7}>
+            <Map
+              animate={true}
+              center={initialCoordinates}
+              length={4}
+              zoom={13}>
+              <TileLayer
+                attribution="&ampcopy <a href=&quothttp://osm.org/copyright&quot>OpenStreetMap</a> contributors"
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-            </label>
-          </Panel.Heading>
-          <Panel.Body>
-            <Row>
-              <Col md={12} className='timeshifter'>
-                <Slider 
-                  min={0}
-                  max={30}
-                  marks={marks}
-                  value={timeshift}
-                  step={2}
-                  dots={true}
-                  onChange={this.onChange.bind(this)}
-                />
-                <br/>
-              </Col>
-            </Row>
-          </Panel.Body>
-        </Panel>
-        <br/>
+              {markerList}
+            </Map>
+          </Col>
+          <Col md={5}>
+            <BarChart data={chartData}  xtitle="in dB" />
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col md={12}>
+            <Panel>
+              <Panel.Heading>
+                Timeshifter:
+                <label>
+                  <Moment 
+                    subtract={{ minutes: timeshift }}
+                    format="HH:mm"
+                  />
+                </label>
+              </Panel.Heading>
+              <Panel.Body>
+                <Row>
+                  <Col md={12} className='timeshifter'>
+                    <Slider 
+                      min={0}
+                      max={30}
+                      marks={marks}
+                      value={timeshift}
+                      step={2}
+                      dots={true}
+                      onChange={this.onChange.bind(this)}
+                    />
+                    <br/>
+                  </Col>
+                </Row>
+              </Panel.Body>
+            </Panel>
+          </Col>
+        </Row>
       </div>
-
     )
   }
 }
