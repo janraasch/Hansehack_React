@@ -17,8 +17,8 @@ const marks = {
   30: '- 30min'
 }
 const initialCoordinates = {
-  lat: 53.86893,
-  lng: 10.68729
+  lat: 53.858286,
+  lng: 10.682134
 }
 
 
@@ -124,7 +124,7 @@ class MapContainer extends Component {
               animate={true}
               center={initialCoordinates}
               length={4}
-              zoom={13}>
+              zoom={14}>
               <TileLayer
                 attribution="&ampcopy <a href=&quothttp://osm.org/copyright&quot>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
