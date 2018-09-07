@@ -1,0 +1,6 @@
+{
+  "routes": {
+    "/map": "index.html",
+    "/SensorList": "index.html"
+  }
+}
