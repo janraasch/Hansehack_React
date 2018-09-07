@@ -1,8 +1,8 @@
 import axios from 'axios'
-import React, {Component, createRef} from 'react'
-import { Map, TileLayer, Marker, Popup, Circle } from 'react-leaflet'
+import React, { Component } from 'react'
+import { Map, TileLayer, Popup, Circle } from 'react-leaflet'
 import { Col, Panel, Row } from 'react-bootstrap'
-import Slider, { Range } from 'rc-slider'
+import Slider from 'rc-slider'
 import Moment from 'react-moment'
 import MomentJS from 'moment'
 
@@ -12,7 +12,7 @@ import './MapContainer.css'
 import {serverURI, channels} from '../App'
 
 const marks = {
-  0: <strong>Jetzt</strong>,
+  0: <strong>Echtzeit</strong>,
   30: '- 30min'
 }
 const initialCoordinates = {
@@ -105,7 +105,9 @@ class MapContainer extends Component {
       }
 
       return (
-        <Circle center={[channel.latitude, channel.longitude]} color={color} fillColor={color} radius={radius} />
+        <Circle key={channel.id} center={[channel.latitude, channel.longitude]} color={color} fillColor={color} radius={radius}>
+          <Popup>{channel.name} mit {channel.lastLevel} DB</Popup>
+        </Circle>
       )
     })
 
