@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import SensorList from "./SensorList";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import MapContainer from './Components/MapContainer';
+import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap'
 
 export const channels = [
   {
@@ -24,20 +26,32 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <ul>
-            <li>
-              <NavLink activeClassName="hide" to="/SensorList">SensorList</NavLink>
-            </li>
-            <li>
-              <NavLink to="/map">Map</NavLink>
-            </li>
-          </ul>
-          <hr />
+        <div className='container'>
+          <Navbar>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a href="/">Stadtgeräusche Lübeck</a>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav>
+                <LinkContainer to="/SensorList">
+                  <NavItem>    
+                    SensorList
+                  </NavItem>
+                </LinkContainer>
+                <LinkContainer to="/map">
+                  <NavItem>    
+                    Map
+                  </NavItem>
+                </LinkContainer>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
 
           <Route path="/map" component={() => <MapContainer/>} />
           <Route path="/SensorList" component={() => <SensorList/>} />
-
         </div>
       </Router>
     );
