@@ -3,24 +3,35 @@ table
 {
     width: 100%;
     table-layout: fixed;
+    margin-bottom: 40px;
 }
 
 thead th
 {
-    background: #222;
-    color: white;
+    color: black;
+    background: #AAA;
     height: 40px;
     font-size: 1.1em;
 }
 
+h3
+{
+    background: #222222;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    margin: 0px;
+}
+
+
 tr:nth-child(even)
 {
-    background: #BBB;
+    background: #DDD;
 }
 
 tr:nth-child(odd)
 {
-    background: #EEE;
+    background: #FFF;
 }
 
 .disableLi

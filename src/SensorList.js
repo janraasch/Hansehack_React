@@ -8,14 +8,15 @@ import './SensorListStyle.css';
 
 class SensorList extends Component {
     state = {
-        channelData: []
+        channelData: [],
+        id: -1
     }
 
     componentDidMount() {
         setInterval(() =>
         {
           channels.map((channel) => {
-            axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=1&key=${channel.token}`)
+            axios.get(`${serverURI}/channels/${channel.id}/feeds.json?results=5&key=${channel.token}`)
               .then(res => {
                 const { name, latitude, longitude, id } = res.data.channel;
                 const feeds = res.data.feeds;
@@ -36,14 +37,17 @@ class SensorList extends Component {
                     latitude: latitude || '53.86893',
                     longitude: longitude || '10.68729',
                     id,
-                    lastLevel: lastLevel
+                    lastLevel: lastLevel,
+                    levels: feeds.map((item) => {
+                        return {noise: item.field1, timestamp: item.created_at};
+                    })
                 }]);
     
                 this.setState({ channelData: fetchedData });
               });
             return null;
           })
-        }, 2000);
+        }, 8000);
     }
 
     fetchAllTableRows(jsonResult)
@@ -55,9 +59,16 @@ class SensorList extends Component {
 
         return jsonResult.map((channelData) => {
 
-            let lastLevel = (channelData.lastLevel === null) ? 0 : channelData.lastLevel;
-
-            return (<tr key={channelData.id}><td>{channelData.id}</td><td>{channelData.name}</td><td>{lastLevel}</td></tr>)
+            return (
+                <div>
+                <h3>{channelData.name}</h3>
+                    <table>
+                        <thead><th>Timestamp</th> <th>Noise</th></thead>
+                        <tbody>{channelData.levels.map((el) => {
+                            return (<tr key={el.timestamp}><td>{el.timestamp}</td><td>{el.noise}</td></tr>)})}
+                        </tbody>
+                    </table>
+                </div>)
         });
     }
 
@@ -68,20 +79,9 @@ class SensorList extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h1 className="App-title">Listing all sensors</h1>
+                    <h1 className="App-title">Listing All Channels</h1>
                 </header>
-                <table id="table">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Location</th>
-                        <th>Noise in DB</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                      {this.fetchAllTableRows(channels)}
-                    </tbody>
-                </table>
+                {this.fetchAllTableRows(channels)}
             </div>
         );
     }
