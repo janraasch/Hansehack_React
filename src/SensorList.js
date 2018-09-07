@@ -40,8 +40,8 @@ class SensorList extends Component {
                     id,
                     lastLevel: lastLevel,
                     levels: feeds.map((item) => {
-                        return {noise: item.field1, timestamp: item.created_at};
-                    })
+                        return {noise: item.field1, timestamp: item.created_at, eId: item.entry_id};
+                    }),
                 }]);
 
                 this.setState({ channelData: fetchedData });
@@ -61,13 +61,13 @@ class SensorList extends Component {
         return jsonResult.map((channelData) => {
 
             return (
-                <div>
+                <div key={channelData.id}>
                 <h2 className="text-center">{channelData.name} (ID {channelData.id})</h2>
                     <Table striped bordered hover>
                         <thead><tr><th>Timestamp</th><th>Noise</th></tr></thead>
                         <tbody>
                             {channelData.levels.map((el) => {
-                                return (<tr key={channelData.id + el.timestamp}>
+                                return (<tr key={el.eId}>
                                     <td>
                                         <Moment format="DD.MM.YY HH:mm">
                                             {el.timestamp}
