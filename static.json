@@ -1,6 +1,6 @@
 {
   "routes": {
-    "/assets/*": "/assets/",
+    "/static/*": "/static/",
     "/**": "index.html"
   }
 }
