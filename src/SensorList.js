@@ -69,7 +69,7 @@ class SensorList extends Component {
                             {channelData.levels.map((el) => {
                                 return (<tr key={channelData.id + el.timestamp}>
                                     <td>
-                                        <Moment format="MM.DD.YY HH:mm">
+                                        <Moment format="DD.MM.YY HH:mm">
                                             {el.timestamp}
                                         </Moment>
                                     </td>
