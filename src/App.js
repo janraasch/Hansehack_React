@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SensorList from "./SensorList";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import MapContainer from './components/MapContainer';
+import MapContainer from './Components/MapContainer';
 
 export const channels = [
   {
