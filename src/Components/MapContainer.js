@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, {Component, createRef} from 'react';
-import { Map, TileLayer, Marker, Popup, Circle } from 'react-leaflet'
+import React, {Component} from 'react';
+import { Map, TileLayer, Circle } from 'react-leaflet'
 import {serverURI, channels} from '../App'
 
 const initialCoordinates = {
@@ -54,7 +54,7 @@ class MapContainer extends Component {
     const markerList = channels.map((channel) => {
       let color = 'gray'
       let radius = 20;
-      
+
       if (channel.lastLevel >= 0 && channel.lastLevel < 50) {
         color = 'green'
         radius = 50;
@@ -91,4 +91,3 @@ class MapContainer extends Component {
 }
 
 export default MapContainer;
-

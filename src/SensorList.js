@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { PageHeader, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 import {serverURI, channels} from './App';
 

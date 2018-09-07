@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SensorList from "./SensorList";
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import MapContainer from './Components/MapContainer';
-import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap'
 
 export const channels = [
