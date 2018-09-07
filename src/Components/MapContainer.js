@@ -5,6 +5,7 @@ import { Col, Panel, Row } from 'react-bootstrap'
 import Slider from 'rc-slider'
 import Moment from 'react-moment'
 import MomentJS from 'moment'
+import ReactChartkick, { BarChart } from 'react-chartkick'
 
 import 'rc-slider/assets/index.css'
 import './MapContainer.css'
@@ -111,6 +112,10 @@ class MapContainer extends Component {
       )
     })
 
+    const chartData = channels.map((channel) => {
+      return [channel.name, channel.lastLevel]
+    }).sort()
+
     return (
       <div>
         <Map
@@ -125,6 +130,7 @@ class MapContainer extends Component {
           {markerList}
         </Map>
         <hr/>
+        <BarChart data={chartData}  xtitle="in Bel" />
         <Panel>
           <Panel.Heading>
             Timeshifter:
@@ -152,7 +158,7 @@ class MapContainer extends Component {
             </Row>
           </Panel.Body>
         </Panel>
-        
+        <br/>
       </div>
 
     )
