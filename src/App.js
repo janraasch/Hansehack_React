@@ -17,8 +17,8 @@ export const channels = [
     id: 66,
     token: 'HZ86OFDXBSCWPGNU'
   }, {
-    id: 122,
-    token: 'KPW4D81CMQ9YZX1G'
+    id: 125,
+    token: '1ET4VQQMMW1V6SYF'
   }
 ]
 export const serverURI = 'http://hansehack.fh-luebeck.de'
