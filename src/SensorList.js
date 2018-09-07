@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
+import Moment from 'react-moment';
 
 import {serverURI, channels} from './App';
 
@@ -63,9 +64,18 @@ class SensorList extends Component {
                 <div>
                 <h2 className="text-center">{channelData.name} (ID {channelData.id})</h2>
                     <Table striped bordered hover>
-                        <thead><tr><th>Timestamp</th> <th>Noise</th></tr></thead>
-                        <tbody>{channelData.levels.map((el) => {
-                            return (<tr key={el.timestamp}><td>{el.timestamp}</td><td>{el.noise}</td></tr>)})}
+                        <thead><tr><th>Timestamp</th><th>Noise</th></tr></thead>
+                        <tbody>
+                            {channelData.levels.map((el) => {
+                                return (<tr key={channelData.id + el.timestamp}>
+                                    <td>
+                                        <Moment format="MM.DD.YY HH:mm">
+                                            {el.timestamp}
+                                        </Moment>
+                                    </td>
+                                    <td>{el.noise}</td>
+                                </tr>)
+                            })}
                         </tbody>
                     </Table>
                 </div>)
