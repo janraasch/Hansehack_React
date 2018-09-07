@@ -14,6 +14,10 @@ export const channels = [
     id: 76,
     token: 'AXOSSY1ZGI34E1KN'
   }, {
+    id: 77,
+    token: '6VF6QMZQSSERJXCG'
+  },  
+  {
     id: 66,
     token: 'HZ86OFDXBSCWPGNU'
   }, {
