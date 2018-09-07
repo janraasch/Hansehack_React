@@ -61,7 +61,7 @@ class SensorList extends Component {
 
             return (
                 <div>
-                <h2 className="text-center">{channelData.name}</h2>
+                <h2 className="text-center">{channelData.name} (ID {channelData.id})</h2>
                     <Table striped bordered hover>
                         <thead><tr><th>Timestamp</th> <th>Noise</th></tr></thead>
                         <tbody>{channelData.levels.map((el) => {
