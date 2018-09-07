@@ -14,6 +14,9 @@ const channels = [
   }, {
     id: 123,
     token: '4RIMYW1C4I56I5FR'
+  }, {
+    id: 77,
+    token: '6VF6QMZQSSERJXCG'
   }
 ]
 const serverURI = 'http://hansehack.fh-luebeck.de'
@@ -48,8 +51,8 @@ class App extends Component {
 
                     const fetchedData = channelData.concat([{
                         name,
-                        latitude,
-                        longitude,
+                        latitude: latitude || '53.86893',
+                        longitude: longitude || '10.68729',
                         id,
                         lastLevel: lastLevel
                     }]);
